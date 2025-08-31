@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Future Teller</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .question-box {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      font-size: 100px;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        text-shadow: 0 0 10px white, 0 0 20px #666, 0 0 30px #999;
+      }
+      50% {
+        text-shadow: 0 0 20px white, 0 0 40px #aaa, 0 0 60px #fff;
+      }
+      100% {
+        text-shadow: 0 0 10px white, 0 0 20px #666, 0 0 30px #999;
+      }
+    }
+
+    .answer-box {
+      margin-top: 20px;
+      padding: 20px;
+      background: #222;
+      border-radius: 10px;
+      font-size: 20px;
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .answer-box.show {
+      display: block;
+      opacity: 1;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #444;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #666;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Future Teller</h1>
+
+  <div class="question-box">?</div>
+
+  <button onclick="tellFuture()">Reveal Answer</button>
+
+  <div class="answer-box" id="answerBox"></div>
+
+  <script>
+    const answers = [
+      "yes",
+      "no",
+      "maybe",
+      "the choice is yours",
+      "check back later",
+      "its hard to tell",
+      "the answer is cloudy",
+      "probably so",
+      "trust your gut",
+      "you wish",
+      "wouldnt you like to know",
+      "good question",
+      "you already know the answer",
+      "work towards it",
+      "dont give up",
+      "ask again later",
+      "its hard to say",
+      "not likely",
+      "let me think about it",
+      "kinda iffy",
+      "ask google",
+      "Too early to tell"
+    ];
+
+    function tellFuture() {
+      const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+      const answerBox = document.getElementById("answerBox");
+      answerBox.textContent = randomAnswer;
+      answerBox.classList.remove("show"); // reset fade
+      void answerBox.offsetWidth; // trick to restart animation
+      answerBox.classList.add("show");
+    }
+  </script>
+</body>
+</html>
